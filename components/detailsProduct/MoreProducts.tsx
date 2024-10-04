@@ -2,6 +2,7 @@ import React from "react";
 
 import ProductCard from "@/elements/ProductCard";
 import { IProduct } from "@/typings/interfaces";
+import getProductsActions from "@/serverActions/products/getProductsActions";
 
 async function getProducts() {
   const res = await getProductsActions();
