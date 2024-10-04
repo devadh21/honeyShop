@@ -4,20 +4,14 @@ import ProductCard from "@/elements/ProductCard";
 import { IProduct } from "@/typings/interfaces";
 
 async function getProducts() {
-  const res = await fetch(process.env.URL_SITE + "/api/products/honeys", {
-    // cache: 'no-store'
-    headers: {
-      authorization: "1234567890abcdefghijklmnopqrstuvwxyz",
-    },
-  });
-  if (!res.ok) throw new Error(await res.text());
-//   revalidatePath("/");
-  return res.json();
+  const res = await getProductsActions();
+  if (res === undefined) throw new Error("No Products Found");
+  return res;
 }
 
 export default async function MoreProducts() {
   const res = await getProducts();
-  const  productList = res.data as IProduct[];
+  const  productList = res as IProduct[];
   const  first_tree_products = productList.slice(0,3)
 //   console.log("dd",productList.slice(0,3))
 
